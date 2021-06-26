@@ -126,15 +126,15 @@ namespace AlphaBot2 {
         pins.i2cWriteBuffer(PCA9685_ADDRESS, buf);
     }
     //% blockId=AlphaBot2_motor_run block="Motor|%index|speed %speed"
-    //% speed eg: 150
+    //% speed eg: 2250
     //% weight=100
-    //% speed.min=-255 speed.max=255
+    //% speed.min=-4095 speed.max=4095
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function MotorRun(index: Motors, speed: number): void {
         if (!initialized) {
             initPCA9685()
         }
-        speed = speed * 16; // map 255 to 4096
+        //speed = speed * 16; // map 255 to 4096
         if (speed >= 4096) {
             speed = 4095
         }
@@ -165,12 +165,12 @@ namespace AlphaBot2 {
     }
 	/**
 	 * Execute single motors 
-	 * @param speed [-255-255] speed of motor; eg: 150
+	 * @param speed [-4095-4095] speed of motor; eg: 2250
 	*/
     //% blockId=AlphaBot2_run block="|%index|speed %speed"
-    //% speed eg: 150
+    //% speed eg: 2250
     //% weight=95
-    //% speed.min=-255 speed.max=255 eg: 150
+    //% speed.min=-4095 speed.max=4095 eg: 2250
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Run(index: Dir, speed: number): void {
         switch (index) {
@@ -199,13 +199,13 @@ namespace AlphaBot2 {
 
 	/**
 	 * Execute single motors 
-	 * @param speed [-255-255] speed of motor; eg: 150
+	 * @param speed [-4095-4095] speed of motor; eg: 2250
 	 * @param time dalay second time; eg: 2
 	*/
     //% blockId=AlphaBot2_run_delay block="|%index|speed %speed|for %time|sec"
-    //% speed eg: 150
+    //% speed eg: 2250
     //% weight=90
-    //% speed.min=-255 speed.max=255 eg: 150
+    //% speed.min=-4095 speed.max=4095 eg: 2250
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function RunDelay(index: Dir, speed: number, time: number): void {
         Run(index, speed);
